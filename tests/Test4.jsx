@@ -42,14 +42,14 @@ function Context({ children }) {
     complexion: "",
   };
 
-  const person = BaseContext;
+  const [person, setPerson] = useState(BaseContext);
 
-  return <PersonContext.Provider value={{}}>{children}</PersonContext.Provider>;
+  return <PersonContext.Provider value={{person, setPerson}}>{children}</PersonContext.Provider>;
 }
 
 //set values here.
 function SetterComponent() {
-  const setPerson = () => undefined;
+  const { setPerson } = useContext(PersonContext);
 
   const newPerson = {
     name: "Jrue Holiday",
@@ -66,7 +66,7 @@ function SetterComponent() {
         height: 60,
         borderRadius: 2.725,
       }}
-      onClick={() => setPerson()}
+      onClick={() => setPerson(newPerson)}
     >
       Set
     </button>
@@ -75,19 +75,25 @@ function SetterComponent() {
 
 //access and display 'person' details here.
 function Screen() {
-  const person = "Jordan Ripley";
+  const { person } = useContext(PersonContext);
+  //const person = "Jordan Ripley";
 
   return (
-    <div className="testContainer">
-      <div className="test4">
-        <h1> {person ? person.name : "No name found."} </h1>
-        <SetterComponent />
+      <div className="testContainer">
+        <div className="test4">
+          <h1> {person ? person.name : "No name found."} </h1>
+          <SetterComponent />
+        </div>
       </div>
-    </div>
   );
 }
 
 //default component.
 export default function Test4Screen() {
-  return <Screen />;
+  return (
+    <Context>
+      <Screen />
+    </Context>
+
+  );
 }

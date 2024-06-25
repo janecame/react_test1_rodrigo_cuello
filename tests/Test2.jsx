@@ -30,12 +30,14 @@
 import React from "react";
 
 export default function Test2Screen() {
-  var color = "LEMONCHIFFON";
+  const[toggle, setToggle] = React.useState(true);
+  var lemonchiffon = "LEMONCHIFFON";
+  var coral = "CORAL";
 
   const styles = {
     header: {
-      backgroundColor: color,
-      color: "purple",
+      backgroundColor: toggle ? lemonchiffon : coral,
+      color: toggle ? coral : lemonchiffon,
       height: "20%",
       width: "100%",
       fontSize: "2rem",
@@ -53,9 +55,9 @@ export default function Test2Screen() {
 
   return (
     <div className="testContainer">
-      <h1 style={styles.header}> Lemonchiffon </h1>
+      <h1 style={styles.header}> {toggle ? lemonchiffon : coral} </h1>
 
-      <button style={styles.btn} onClick={() => (color = "coral")}>
+      <button style={styles.btn} onClick={() => (setToggle(!toggle))}>
         Toggle
       </button>
     </div>

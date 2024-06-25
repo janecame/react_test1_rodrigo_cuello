@@ -30,6 +30,7 @@ export default function Test3Screen() {
     complexion: "Brown",
   };
 
+
   return (
     <div className="testContainer">
       <div className="test4">
@@ -38,7 +39,14 @@ export default function Test3Screen() {
         </h1>
         <ul>
           <li> Features: </li>
-          <li> {people.age} </li>
+          {/* {Object.entries(people).map(([key, value]) => 
+              <li key={key}> {value} </li>
+            )
+          } */}
+          <li>{people.age}</li>
+          <li>{people.height}</li>
+          <li>{people.complexion}</li>
+
         </ul>
       </div>
     </div>
